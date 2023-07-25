@@ -33,17 +33,30 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: read
+    if: github.ref == 'refs/heads/main'
     outputs:
       version: ${{ steps.version.outputs.version }}
       previous_version: ${{ steps.version.outputs.previous_version }}
       previous_version_ref: ${{ steps.version.outputs.previous_version_ref }}
     steps:
-      - uses: oss-actions/auto-semver@v0.1.2
-        id: version
+      # - uses: oss-actions/auto-semver@v0.1.2
+      #   id: version
+      #   with:
+      #     token: ${{ github.token }}
+      #     repository: ${{ github.repository }}
+      #     type: ${{ inputs.type }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          type: ${{ inputs.type }}
+          node-version: 18
+      - name: Build
+        run: npm install && npm run ci:build && npm prune --production
+      - id: version
+        run: node dist/main.js
+        env:
+          INPUT_token: ${{ github.token }}
+          INPUT_repository: ${{ github.repository }}
+          INPUT_type: ${{ inputs.type }}
   release:
     name: Release
     runs-on: ubuntu-22.04
