@@ -11,6 +11,8 @@ const execOptions = { cwd: outputDir, stdio: "pipe" } as ExecOptions;
 export function prepareRepositoryWithTags(...tags: string[]) {
 	mkdirSync(outputDir, { recursive: true });
 	execSync("git init", execOptions);
+	execSync("git config user.name 'test'", execOptions);
+	execSync("git config user.email 'test@test.test'", execOptions);
 	execSync("git commit --allow-empty -m 'initial commit'", execOptions);
 	for (const tag of tags) {
 		execSync("git tag " + tag, execOptions);
