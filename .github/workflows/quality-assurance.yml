@@ -69,7 +69,7 @@ jobs:
           languages: javascript, typescript
       # build code
       - name: Builde code
-        run: npm install && npm ci:build && npm prune --production
+        run: npm install && npm run ci:build && npm prune --production
       # analyze
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
