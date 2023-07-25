@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: 18
       - name: Build
-        run: npm install && npm ci:build && npm prune --production
+        run: npm install && npm run ci:build && npm prune --production
       - name: Versioning
         id: version
         run: node dist/main.js
@@ -54,14 +54,14 @@ jobs:
     permissions:
       contents: read
     needs: [qa, versioning]
-    if: always() && github.ref != needs.versioning.outputs.previous_version_ref
+    if: github.ref != needs.versioning.outputs.previous_version_ref
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
       - name: Build
-        run: npm install && npm ci:build && npm prune --production
+        run: npm install && npm run ci:build && npm prune --production
       - name: Apply version ${{ needs.versioning.outputs.version }}
         env:
           VERSION: ${{ needs.versioning.outputs.version }}
