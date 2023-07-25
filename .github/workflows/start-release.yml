@@ -76,6 +76,7 @@ jobs:
           VERSION: ${{ needs.versioning.outputs.version }}
           RELEASE_MESSAGE: |
             ${{ inputs.releaseMessage || format('Release version {0}', needs.versioning.outputs.version) }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           rm -rf .gitignore
           if [ -f release.gitignore ]; then
@@ -90,3 +91,4 @@ jobs:
           # Absolutely no UB is allowed here.
           git tag "$VERSION"
           git push -u origin "$VERSION"
+          gh release create --verify-tag -t "$RELEASE_MESSAGE" -d "$VERSION" --draft .
