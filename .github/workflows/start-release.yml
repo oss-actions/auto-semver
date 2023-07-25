@@ -48,6 +48,10 @@ jobs:
       - name: Versioning
         id: version
         run: node dist/main.js
+        env:
+          INPUT_TOKEN: ${{ github.token }}
+          INPUT_REPOSITORY: ${{ github.repository }}
+          INPUT_TYPE: ${{ inputs.type }}
   release:
     name: Release
     runs-on: ubuntu-22.04
