@@ -1,5 +1,5 @@
 const REGEX =
-	/^(?<ref>[a-f0-9]{40})\trefs\/tags\/v(?<version>[0-9]+\.[0-9]+\.[0-i]+)$/;
+	/^(?<ref>[a-f0-9]{40})\trefs\/tags\/v(?<version>[0-9]+\.[0-9]+\.[0-9]+)$/;
 
 export interface Version {
 	ref: string;
