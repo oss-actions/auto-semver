@@ -1,5 +1,8 @@
 name: Auto Semver
 description: Easily manage versioning for your repository
+branding:
+  icon: box
+  color: orange
 runs:
   using: node16
   main: dist/main.js
