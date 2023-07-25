@@ -16,16 +16,24 @@ on:
         type: string
         required: false
 permissions:
-  contents: write
+  contents: read
+  actions: read
+  security-events: write
 jobs:
   qa:
     name: Quality Assurance
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
     uses: ./.github/workflows/quality-assurance.yml
     if: github.ref == 'refs/heads/main'
   versioning:
     name: Versioning
     needs: [qa]
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
     outputs:
       version: ${{ steps.version.outputs.version }}
       previous_version: ${{ steps.version.outputs.previous_version }}
@@ -43,6 +51,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
     needs: [qa, versioning]
     if: always() && github.ref != needs.versioning.outputs.previous_version_ref
     steps:
