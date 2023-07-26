@@ -26,8 +26,7 @@ inputs:
 outputs:
   version:
     description: |
-      Which repository to autosemver for. This should normally be set
-      to `$ {{ github.repository }}`.
+      The next version to tag.
   previous_version:
     description: |
       The highest and currently available semver tag in the repository.
