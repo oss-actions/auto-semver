@@ -36,10 +36,12 @@ jobs:
     if: github.ref == 'refs/heads/main'
     outputs:
       version: ${{ steps.version.outputs.version }}
+      minor_version: ${{ steps.version.outputs.minor_version }}
+      major_version: ${{ steps.version.outputs.major_version }}
       previous_version: ${{ steps.version.outputs.previous_version }}
       previous_version_ref: ${{ steps.version.outputs.previous_version_ref }}
     steps:
-       - uses: oss-actions/auto-semver@v0.1.3
+       - uses: oss-actions/auto-semver@v0.1.5
          id: version
          with:
            token: ${{ github.token }}
@@ -67,8 +69,8 @@ jobs:
       - name: Release
         env:
           VERSION: ${{ needs.versioning.outputs.version }}
-          #MINOR_VERSION: ${{ needs.versioning.outputs.minor_version }}
-          #MAJOR_VERSION: ${{ needs.versioning.outputs.major_version }}
+          MINOR_VERSION: ${{ needs.versioning.outputs.minor_version }}
+          MAJOR_VERSION: ${{ needs.versioning.outputs.major_version }}
           RELEASE_MESSAGE: |
             ${{ inputs.releaseMessage || format('Release version {0}', needs.versioning.outputs.version) }}
           GH_TOKEN: ${{ github.token }}
@@ -83,11 +85,11 @@ jobs:
           git config user.email github-actions@github.com
           git commit -m "$RELEASE_MESSAGE"
           git tag "$VERSION"
-          # git tag -f "$MINOR_VERSION"
-          # git tag -f "$MAJOR_VERSION"
+          git tag -f "$MINOR_VERSION"
+          git tag -f "$MAJOR_VERSION"
           # We don't want to use -f either on tag or push. If something goes wrong it goes wrong.
           # Absolutely no UB is allowed here.
           git push -u origin "$VERSION"
           # Here we have to force push in case of previous versions.
-          # git push -fu origin {$MINOR_VERSION,$MAJOR_VERSION}
+          git push -fu origin {$MINOR_VERSION,$MAJOR_VERSION}
           gh release create --verify-tag -t "$RELEASE_MESSAGE" -d "$VERSION"
