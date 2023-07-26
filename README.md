@@ -63,6 +63,10 @@ _Easily manage versioning for your repository_
   this defaults to `v0.1.0`. If the `type` is `major` then the version will
   default to `v1.0.0`.
 
+- `minor_version`: Same as `version` but with the `.<PATCH>` cut off.
+
+- `major_version`: Same as `version` but with the `.<MINOR>.<PATCH>` cut off.
+
 - `previous_version`: The highest and currently available semver tag in the
   repository.
 

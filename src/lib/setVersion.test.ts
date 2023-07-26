@@ -20,7 +20,9 @@ afterEach(() => {
 });
 
 it("writes new version to output", () => {
-	setVersion("new", "old");
+	setVersion("1.2.3", "old");
 	const out = outputs();
-	expect(out.version).toStrictEqual("vnew");
+	expect(out.version).toStrictEqual("v1.2.3");
+	expect(out.minor_version).toStrictEqual("v1.2");
+	expect(out.major_version).toStrictEqual("v1");
 });

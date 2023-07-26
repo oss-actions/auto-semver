@@ -27,6 +27,12 @@ outputs:
   version:
     description: |
       The next version to tag.
+  minor_version:
+    description: |
+      Same as `version` but with the `.<PATCH>` cut off.
+  major_version:
+    description: |
+      Same as `version` but with the `.<MINOR>.<PATCH>` cut off.
   previous_version:
     description: |
       The highest and currently available semver tag in the repository.
