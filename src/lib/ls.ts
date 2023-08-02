@@ -9,10 +9,12 @@ import lineToTag, { type Version } from "./lineToTag";
  */
 export default async function ls(gitUrl: string): Promise<Version[]> {
 	let out = "";
-	{
+	try {
 		const url = new URL(gitUrl);
 		url.password = "";
 		debug(`Listing remote ${url.href}`);
+	} catch {
+		// ignore
 	}
 	const code = await exec("git", ["ls-remote", "--tags", gitUrl], {
 		silent: true,
