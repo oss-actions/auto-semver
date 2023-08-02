@@ -7,7 +7,7 @@ export default async function action() {
 	const type = getInput("type", { required: true });
 
 	await incrementVersionForRepository(
-		`https://:${token}@github.com/${repository}.git`,
+		`https://github-actions:${token}@github.com/${repository}.git`,
 		type,
 	);
 }
