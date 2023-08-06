@@ -20,13 +20,13 @@ afterEach(() => {
 });
 
 it("writes v1.0.0 to version in outputs when major", () => {
-	setDefaultVersion("major");
+	setDefaultVersion("major", true);
 	const out = outputs();
 	expect(out.version).toStrictEqual("v1.0.0");
 });
 
 it("writes v0.1.0 to version in outputs when not major", () => {
-	setDefaultVersion("");
+	setDefaultVersion("", true);
 	const out = outputs();
 	expect(out.version).toStrictEqual("v0.1.0");
 });
