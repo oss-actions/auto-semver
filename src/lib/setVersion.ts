@@ -1,6 +1,7 @@
 import { debug, notice, setOutput } from "jamesons-actions-toolkit";
 import minorVersion from "./minorVersion";
 import majorVersion from "./majorVersion";
+import { version } from "../../package.json";
 
 export function setVersion(
 	newVersion: string,
@@ -17,5 +18,10 @@ export function setVersion(
 		minorVersion(v),
 		majorVersion(v),
 	);
-	notice("new version(%s), old version(%s)", newVersion, oldVersion);
+	notice(
+		"new version(%s), old version(%s) (using auto-semver %s)",
+		newVersion,
+		oldVersion,
+		version,
+	);
 }
