@@ -21,42 +21,42 @@ afterEach(() => {
 
 it("fails when type is not valid", async () => {
 	await expect(
-		incrementVersionForRepository(outputDir, "invalid"),
+		incrementVersionForRepository(outputDir, "invalid", true),
 	).rejects.toThrow("Invalid increment type 'invalid'");
 });
 
 it("sets default version to v1.0.0 when major", async () => {
 	prepareRepositoryWithTags();
-	await incrementVersionForRepository(outputDir, "major");
+	await incrementVersionForRepository(outputDir, "major", true);
 	expect(outputs().version).toStrictEqual("v1.0.0");
 });
 
 it("sets default version to v0.1.0 when minor", async () => {
 	prepareRepositoryWithTags();
-	await incrementVersionForRepository(outputDir, "minor");
+	await incrementVersionForRepository(outputDir, "minor", true);
 	expect(outputs().version).toStrictEqual("v0.1.0");
 });
 
 it("sets default version to v0.1.0 when patch", async () => {
 	prepareRepositoryWithTags();
-	await incrementVersionForRepository(outputDir, "patch");
+	await incrementVersionForRepository(outputDir, "patch", true);
 	expect(outputs().version).toStrictEqual("v0.1.0");
 });
 
 it("increments patch", async () => {
 	prepareRepositoryWithTags("v0.1.0");
-	await incrementVersionForRepository(outputDir, "patch");
+	await incrementVersionForRepository(outputDir, "patch", true);
 	expect(outputs().version).toStrictEqual("v0.1.1");
 });
 
 it("increments minor", async () => {
 	prepareRepositoryWithTags("v0.1.1", "v0.1.2");
-	await incrementVersionForRepository(outputDir, "minor");
+	await incrementVersionForRepository(outputDir, "minor", true);
 	expect(outputs().version).toStrictEqual("v0.2.0");
 });
 
 it("increments major", async () => {
 	prepareRepositoryWithTags("v0.1.1", "v0.1.2");
-	await incrementVersionForRepository(outputDir, "major");
+	await incrementVersionForRepository(outputDir, "major", true);
 	expect(outputs().version).toStrictEqual("v1.0.0");
 });
