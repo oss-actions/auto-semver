@@ -13,7 +13,7 @@ $.ignoreExitCode = false;
  */
 export default async function ls(
 	gitUrl: string,
-	vprefix: boolean,
+	vprefix = true,
 ): Promise<Version[]> {
 	try {
 		const url = new URL(gitUrl);
