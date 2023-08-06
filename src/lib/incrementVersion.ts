@@ -1,5 +1,5 @@
 import { parse } from "semver";
-import type { Version } from "./lineToTag";
+import type { Version } from "./lineToTagWithVPrefix";
 
 export default function incrementVersion(
 	{ version }: Version,

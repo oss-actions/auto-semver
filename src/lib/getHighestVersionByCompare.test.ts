@@ -1,5 +1,5 @@
 import getHighestVersionByCompare from "./getHighestVersionByCompare";
-import type { Version } from "./lineToTag";
+import type { Version } from "./lineToTagWithVPrefix";
 
 const expected: [a: string, b: string, n: 0 | 1][] = [
 	["1.0.0", "2.0.0", 1],

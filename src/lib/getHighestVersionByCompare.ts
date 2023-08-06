@@ -1,4 +1,4 @@
-import type { Version } from "./lineToTag";
+import type { Version } from "./lineToTagWithVPrefix";
 import { compare } from "semver";
 
 export default function getHighestVersionByCompare(

@@ -1,12 +1,14 @@
 const REGEX =
-	/^(?<ref>[a-f0-9]{40})\trefs\/tags\/v(?<version>[0-9]+\.[0-9]+\.[0-9]+)$/;
+	/^(?<ref>[a-f0-9]{40})\trefs\/tags\/(?<version>[0-9]+\.[0-9]+\.[0-9]+)$/;
 
 export interface Version {
 	ref: string;
 	version: string;
 }
 
-export default function lineToTag(line: string): Version | undefined {
+export default function lineToTagWithoutVPrefix(
+	line: string,
+): Version | undefined {
 	const match = line.match(REGEX);
 	if (match === null) return;
 	return {

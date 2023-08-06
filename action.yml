@@ -23,6 +23,10 @@ inputs:
     description: |
       What type of increment to do on the previous version. Supported values
       are `major`, `minor` and `patch`.
+  vprefix:
+    required: false
+    description: |
+      Whether or not to include a `v` in the beginning of the version.
 outputs:
   version:
     description: |

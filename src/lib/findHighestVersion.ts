@@ -1,4 +1,4 @@
-import type { Version } from "./lineToTag";
+import type { Version } from "./lineToTagWithVPrefix";
 import { debug } from "@actions/core";
 import getHighestVersionByCompare from "./getHighestVersionByCompare";
 

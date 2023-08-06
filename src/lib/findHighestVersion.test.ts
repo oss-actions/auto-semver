@@ -1,4 +1,4 @@
-import type { Version } from "./lineToTag";
+import type { Version } from "./lineToTagWithVPrefix";
 import { collect, replaceStdout } from "./stdout.test";
 import findHighestVersion from "./findHighestVersion";
 
