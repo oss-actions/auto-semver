@@ -1,4 +1,4 @@
-import { debug, notice, setOutput } from "@actions/core";
+import { debug, notice, setOutput } from "jamesons-actions-toolkit";
 import minorVersion from "./minorVersion";
 import majorVersion from "./majorVersion";
 
@@ -12,9 +12,10 @@ export function setVersion(
 	setOutput("minor_version", minorVersion(v));
 	setOutput("major_version", majorVersion(v));
 	debug(
-		`Outputting version = ${v}, minor_version = ${minorVersion(
-			v,
-		)}, major_version = ${majorVersion(v)}`,
+		"Outputting version = %s, minor_version = %s, major_version = %s",
+		v,
+		minorVersion(v),
+		majorVersion(v),
 	);
-	notice(`new version(${newVersion}), old version(${oldVersion})`);
+	notice("new version(%s), old version(%s)", newVersion, oldVersion);
 }

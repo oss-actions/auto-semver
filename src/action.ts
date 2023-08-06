@@ -1,11 +1,12 @@
-import { getBooleanInput, getInput } from "@actions/core";
+import { getInput, string, boolean } from "jamesons-actions-toolkit";
 import incrementVersionForRepository from "./lib/incrementVersionForRepository";
 
 export default async function action() {
-	const token = getInput("token", { required: true });
-	const repository = getInput("repository", { required: true });
-	const type = getInput("type", { required: true });
-	const vprefix = getBooleanInput("vprefix", { required: false });
+	const token = getInput("token", { optional: false, type: string });
+	const repository = getInput("repository", { optional: false, type: string });
+	const type = getInput("type", { optional: false, type: string });
+	const vprefix =
+		getInput("vprefix", { optional: true, type: boolean }) ?? true;
 
 	await incrementVersionForRepository(
 		`https://github-actions:${token}@github.com/${repository}.git`,

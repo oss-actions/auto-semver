@@ -1,5 +1,5 @@
 import type { Version } from "./lineToTagWithVPrefix";
-import { debug } from "@actions/core";
+import { debug } from "jamesons-actions-toolkit";
 import getHighestVersionByCompare from "./getHighestVersionByCompare";
 
 export default function findHighestVersion(versions: Version[]): Version {
@@ -10,7 +10,10 @@ export default function findHighestVersion(versions: Version[]): Version {
 		const current = versions[i];
 		const winner = getHighestVersionByCompare(highest, current);
 		debug(
-			`Comparing versions highest(${highest.version}) and current(${current.version}), winner(${winner.version})`,
+			"Comparing versions highest(%s) and current(%s), winner(%s)",
+			highest.version,
+			current.version,
+			winner.version,
 		);
 		highest = winner;
 	}

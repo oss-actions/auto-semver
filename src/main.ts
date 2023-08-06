@@ -1,4 +1,4 @@
 import action from "./action";
-import { setFailed } from "@actions/core";
+import { setFailed } from "jamesons-actions-toolkit";
 
 action().catch(setFailed);
