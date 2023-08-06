@@ -1,4 +1,4 @@
-import lineToTagWithVPrefix from "./lineToTagWithVPrefix";
+import lineToTagWithVPrefix from "./lineToTagWithoutVPrefix";
 
 it("converts git ref line to tag object", () => {
 	const ref = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";

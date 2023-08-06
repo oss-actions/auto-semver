@@ -1,6 +1,6 @@
 import { mkdirSync, rmSync, writeFileSync } from "fs";
 import { join } from "path";
-import outputs from "./outputs.test";
+import { getGithubOutputs } from "jamesons-actions-toolkit";
 import setDefaultVersion from "./setDefaultVersion";
 import { collect, replaceStdout } from "./stdout.test";
 
@@ -19,14 +19,14 @@ afterEach(() => {
 	collect();
 });
 
-it("writes v1.0.0 to version in outputs when major", () => {
+it("writes v1.0.0 to version in outputs when major", async () => {
 	setDefaultVersion("major", true);
-	const out = outputs();
+	const out = await getGithubOutputs();
 	expect(out.version).toStrictEqual("v1.0.0");
 });
 
-it("writes v0.1.0 to version in outputs when not major", () => {
+it("writes v0.1.0 to version in outputs when not major", async () => {
 	setDefaultVersion("", true);
-	const out = outputs();
+	const out = await getGithubOutputs();
 	expect(out.version).toStrictEqual("v0.1.0");
 });
