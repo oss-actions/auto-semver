@@ -3,7 +3,9 @@ import { readFileSync } from "node:fs";
 import minorVersion from "./minorVersion";
 import majorVersion from "./majorVersion";
 
-const version = JSON.parse(readFileSync("../../package.json").toString());
+const version = JSON.parse(
+	readFileSync(__dirname + "/../..package.json").toString(),
+);
 
 export function setVersion(
 	newVersion: string,
