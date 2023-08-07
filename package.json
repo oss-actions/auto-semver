@@ -23,7 +23,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "jamesons-actions-toolkit": "^0.4.1",
+    "jamesons-actions-toolkit": "^0.4.2",
     "semver": "^7.5.4"
   }
 }

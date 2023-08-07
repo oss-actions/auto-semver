@@ -4,7 +4,7 @@ branding:
   icon: box
   color: orange
 runs:
-  using: node18
+  using: node16
   main: dist/main.js
 inputs:
   token:
