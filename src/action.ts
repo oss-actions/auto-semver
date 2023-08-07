@@ -5,8 +5,11 @@ export default async function action() {
 	const token = getInput("token", { optional: false, type: string });
 	const repository = getInput("repository", { optional: false, type: string });
 	const type = getInput("type", { optional: false, type: string });
-	let vprefix = getInput("vprefix", { optional: true, type: boolean });
-	if (vprefix === undefined) vprefix = true;
+	const vprefix = getInput("vprefix", {
+		optional: true,
+		type: boolean,
+		defaultValue: true,
+	});
 
 	await incrementVersionForRepository(
 		`https://github-actions:${token}@github.com/${repository}.git`,
