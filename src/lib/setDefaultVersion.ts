@@ -1,10 +1,5 @@
 import { notice, setOutput } from "jamesons-actions-toolkit";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
-
-const version = JSON.parse(
-	readFileSync(resolve(__dirname, "../../package.json")).toString(),
-).version;
+import version from "../version";
 
 export default async function setDefaultVersion(
 	type: string,
