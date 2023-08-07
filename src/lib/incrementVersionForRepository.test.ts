@@ -52,7 +52,9 @@ it("increments patch", async () => {
 it("increments minor", async () => {
 	prepareRepositoryWithTags("v0.1.1", "v0.1.2");
 	await incrementVersionForRepository(outputDir, "minor", true);
-	expect((await getGithubOutputs()).version).toStrictEqual("v0.2.0");
+	const outputs = await getGithubOutputs();
+	console.log(outputs);
+	expect(outputs.version).toStrictEqual("v0.2.0");
 });
 
 it("increments major", async () => {

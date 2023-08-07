@@ -21,11 +21,11 @@ export default async function incrementVersionForRepository(
 	const versions = await ls(gitUrl, vprefix);
 
 	if (versions.length === 0) {
-		return setDefaultVersion(type, vprefix);
+		return await setDefaultVersion(type, vprefix);
 	}
 
 	const highest = findHighestVersion(versions);
 	const newVersion = incrementVersion(highest, type);
 
-	setVersion(newVersion, highest.version, vprefix);
+	await setVersion(newVersion, highest.version, vprefix);
 }

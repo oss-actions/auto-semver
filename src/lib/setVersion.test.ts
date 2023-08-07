@@ -20,7 +20,7 @@ afterEach(() => {
 });
 
 it("writes new version to output", async () => {
-	setVersion("1.2.3", "old", true);
+	await setVersion("1.2.3", "old", true);
 	const out = await getGithubOutputs();
 	expect(out.version).toStrictEqual("v1.2.3");
 	expect(out.minor_version).toStrictEqual("v1.2");
