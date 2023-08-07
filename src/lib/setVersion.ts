@@ -1,7 +1,9 @@
 import { debug, notice, setOutput } from "jamesons-actions-toolkit";
+import { readFileSync } from "node:fs";
 import minorVersion from "./minorVersion";
 import majorVersion from "./majorVersion";
-import { version } from "../../package.json";
+
+const version = JSON.parse(readFileSync("../../package.json").toString());
 
 export function setVersion(
 	newVersion: string,

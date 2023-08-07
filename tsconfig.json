@@ -7,7 +7,8 @@
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"outDir": "dist",
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"rootDir": "src/"
 	},
 	"include": ["src/**/*.ts"]
 }

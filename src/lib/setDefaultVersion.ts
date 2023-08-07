@@ -1,5 +1,7 @@
 import { notice, setOutput } from "jamesons-actions-toolkit";
-import { version } from "../../package.json";
+import { readFileSync } from "node:fs";
+
+const version = JSON.parse(readFileSync("../../package.json").toString());
 
 export default function setDefaultVersion(type: string, vprefix: boolean) {
 	const prefix = vprefix ? "v" : "";
