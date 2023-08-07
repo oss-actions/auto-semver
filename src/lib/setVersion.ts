@@ -6,7 +6,7 @@ import { resolve } from "node:path";
 
 const version = JSON.parse(
 	readFileSync(resolve(__dirname, "../../package.json")).toString(),
-);
+).version;
 
 export async function setVersion(
 	newVersion: string,
